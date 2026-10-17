@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c716574a14747e4a41e3f8fe6f70b66, type: 3}
+  m_Name: Solenoid
+  m_EditorClassIdentifier: Assembly-CSharp::KDH.Scripts.Item.ItemSO
+  cost: 3000
+  sellCost: 10000
+  itemIcon: {fileID: 0}
+  desc: "\uC194\uB808\uB178\uC774\uB4DC\uB77C\uB77C"
+  minigamePrefab: {fileID: 0}
