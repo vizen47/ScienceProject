@@ -103,7 +103,7 @@ public class StraightWire : MonoBehaviour
         if (clear)
         {
             _isGameEnded = true;
-            UIManager.Instance.EndMinigame();
+            UIManager.Instance.SuccessUI.SetActive(true);
         }
     }
 

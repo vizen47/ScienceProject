@@ -19,8 +19,6 @@ public class Block : MonoBehaviour
     }
     public void OnMouseDown()
     {
-        Debug.Log("클릭 시작");
-        
         Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
         mouseScreenPos.z = 0; 
         _parent.StartPos = _mainCamera.ScreenToWorldPoint(mouseScreenPos);
@@ -28,8 +26,6 @@ public class Block : MonoBehaviour
 
     public void OnMouseUp()
     {
-        Debug.Log("클릭 종료");
-        
         Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
         mouseScreenPos.z = 0;
         _parent.EndPos = _mainCamera.ScreenToWorldPoint(mouseScreenPos);

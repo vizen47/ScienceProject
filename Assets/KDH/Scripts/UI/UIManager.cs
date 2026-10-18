@@ -1,4 +1,4 @@
-using System;
+using KDH.Scripts.Craft;
 using KDH.Scripts.Item;
 using KDH.Scripts.Resource;
 using TMPro;
@@ -12,12 +12,17 @@ namespace KDH.Scripts.UI
         
         [field: SerializeField] public GameObject CraftTableUI { get; private set; }
         [field: SerializeField] public GameObject CraftTableBtn { get; private set; }
+        [field: SerializeField] public GameObject SellingUI { get; private set; }
         [field: SerializeField] public GameObject SellingBtn { get; private set; }
         [field: SerializeField] public GameObject SuccessUI { get; private set; }
         [field: SerializeField] public GameObject MinigameSurrenderUI { get; private set; }
         [SerializeField] private GameObject canPurchaseUI;
         [SerializeField] private GameObject cannotPurchaseUI;
+        [SerializeField] private GameObject canSellingUI;
+        [SerializeField] private GameObject cannotSellingUI;
         [SerializeField] private TextMeshProUGUI coinText;
+        [SerializeField] private TextMeshProUGUI[] resourceAmountText; // 귀찮아서 배열로
+        [SerializeField] private TextMeshProUGUI havingResourceAmountText;
         [field: SerializeField] public TextMeshProUGUI itemCostText, itemDescText;
         
         void Awake()
@@ -39,6 +44,11 @@ namespace KDH.Scripts.UI
         {
             CraftTableUI.SetActive(!CraftTableUI.activeSelf);
         }
+
+        public void SetActiveSellingUI()
+        {
+            SellingUI.SetActive(!SellingUI.activeSelf);
+        }
         
         public void CanBuy(ItemSO itemData)
         {
@@ -49,6 +59,19 @@ namespace KDH.Scripts.UI
             else
             {
                 cannotPurchaseUI.SetActive(true);
+            }
+        }
+
+        public void CanSell(ItemSO itemData)
+        {
+            if (ResourceDataManager.Instance.ResourceDict.ContainsKey(itemData)  &&
+                ResourceDataManager.Instance.ResourceDict[itemData] > 0)
+            {
+                canSellingUI.SetActive(true);
+            }
+            else
+            {
+                cannotSellingUI.SetActive(true);
             }
         }
 
@@ -80,6 +103,24 @@ namespace KDH.Scripts.UI
         private void SetCoinText()
         {
             coinText.SetText($"골드: {ResourceDataManager.Instance.Coin}원");
+        }
+
+        public void SetResourceAmountText()
+        {
+            foreach (var item in resourceAmountText)
+            {
+                if (item.transform.parent.TryGetComponent(out ItemDataHandler data))
+                {
+                    if (ResourceDataManager.Instance.ResourceDict.ContainsKey(data.ItemData))
+                        item.SetText($"소유하고 있는 물량: {ResourceDataManager.Instance.ResourceDict[data.ItemData]}");
+                }
+            }
+        }
+
+        public void SetTargetResourceAmountText()
+        {
+            if (ResourceDataManager.Instance.ResourceDict.ContainsKey(CraftManager.Instance.CurrentItem))
+                havingResourceAmountText.SetText("현재 가지고 있는 품목의 개수:" + " "+ ResourceDataManager.Instance.ResourceDict[CraftManager.Instance.CurrentItem]);
         }
     }
 }

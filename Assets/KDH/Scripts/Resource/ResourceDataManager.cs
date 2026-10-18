@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using KDH.Scripts.Craft;
 using KDH.Scripts.Item;
 using UnityEngine;
 
@@ -27,9 +28,9 @@ namespace KDH.Scripts.Resource
             }
         }
 
-        private Dictionary<ItemSO, int> _resourceDict = new();
+        public readonly Dictionary<ItemSO, int> ResourceDict = new();
 
-        private int _currentItemCost;
+        private readonly int _currentItemCost;
         
         void Awake()
         {
@@ -39,6 +40,14 @@ namespace KDH.Scripts.Resource
         private void Start()
         {
             Coin = startCoin;
+        }
+
+        public void GetResource(int count)
+        {
+            if (!ResourceDict.TryAdd(CraftManager.Instance.CurrentItem, count))
+            {
+                ResourceDict[CraftManager.Instance.CurrentItem] += count;
+            }
         }
     }
 }
