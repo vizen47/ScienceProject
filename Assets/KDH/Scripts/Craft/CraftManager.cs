@@ -51,7 +51,9 @@ namespace KDH.Scripts.Craft
             
             MinigameStart?.Invoke();
 
-            ResourceDataManager.Instance.Coin -= CurrentItem.cost;
+            UIManager.Instance.CanCostChange = false;
+            
+            ResourceDataManager.Instance.Coin -= (int)CurrentItem.currentCost;
             ResourceDataManager.Instance.OnCoinChanged?.Invoke();
         }
 
@@ -59,12 +61,16 @@ namespace KDH.Scripts.Craft
         {
             MinigameSurrender?.Invoke();
             Destroy(minigameTrm.GetChild(0).gameObject);
+
+            UIManager.Instance.CanCostChange = true;
         }
         
         public void EndMinigame()
         {
             MinigameEnd?.Invoke();
             Destroy(minigameTrm.GetChild(0).gameObject);
+            
+            UIManager.Instance.CanCostChange = true;
         }
     }
 }

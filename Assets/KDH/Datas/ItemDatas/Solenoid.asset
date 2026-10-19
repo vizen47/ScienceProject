@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Solenoid
   m_EditorClassIdentifier: Assembly-CSharp::KDH.Scripts.Item.ItemSO
   cost: 3000
-  sellCost: 10000
-  itemIcon: {fileID: 0}
+  minCost: 7500
+  maxCost: 100000000
+  tmpCost: 3000
+  multiplySellCost: 0.4
+  itemIcon: {fileID: -1542205054304954149, guid: c0b925d1fab47864c97bd7b89acc4fa5, type: 3}
   desc: "\uC194\uB808\uB178\uC774\uB4DC\uB77C\uB77C"
   minigamePrefab: {fileID: 0}

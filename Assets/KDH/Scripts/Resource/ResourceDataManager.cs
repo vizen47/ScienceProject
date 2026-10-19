@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using KDH.Scripts.Craft;
 using KDH.Scripts.Item;
+using KDH.Scripts.UI;
 using UnityEngine;
 
 namespace KDH.Scripts.Resource
@@ -10,6 +11,8 @@ namespace KDH.Scripts.Resource
     {
         public static ResourceDataManager Instance;
 
+        public ItemSO CurrentItemData { get; set; }
+        
         [SerializeField] private int startCoin = 500;
         
         public Action OnCoinChanged;
@@ -40,6 +43,7 @@ namespace KDH.Scripts.Resource
         private void Start()
         {
             Coin = startCoin;
+            InitSellCost();
         }
 
         public void GetResource(int count)
@@ -47,6 +51,28 @@ namespace KDH.Scripts.Resource
             if (!ResourceDict.TryAdd(CraftManager.Instance.CurrentItem, count))
             {
                 ResourceDict[CraftManager.Instance.CurrentItem] += count;
+            }
+        }
+
+        public void UseResourceForCoin()
+        {
+            if (!ResourceDict.TryAdd(CurrentItemData, UIManager.Instance.InputTextBox.GetAmount()))
+            {
+                int value = Mathf.Min(ResourceDict[CurrentItemData], UIManager.Instance.InputTextBox.GetAmount());
+                ResourceDict[CurrentItemData] -= value;
+            }
+
+            Coin += (int)CurrentItemData.tmpCost;
+            
+            OnCoinChanged?.Invoke();
+        }
+        
+        void InitSellCost()
+        {
+            foreach (var sellCost in UIManager.Instance.SellCostAmountText)
+            {
+                if (sellCost.transform.parent.TryGetComponent(out ItemDataHandler data))
+                    data.ItemData.Init();
             }
         }
     }

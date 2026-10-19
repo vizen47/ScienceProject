@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: StriaghtWire
   m_EditorClassIdentifier: Assembly-CSharp::KDH.Scripts.Item.ItemSO
   cost: 100
-  sellCost: 200
-  itemIcon: {fileID: 0}
+  minCost: 200
+  maxCost: 5000000
+  tmpCost: 100
+  multiplySellCost: 0.1
+  itemIcon: {fileID: 4227206352671963777, guid: a085aaa6e5590b74e975602d483f611a, type: 3}
   desc: "\uC9C1\uC120 \uB3C4\uC120 \uC124\uBA85\uC9C1\uC120 \uB3C4\uC120 \uC124\uBA85\uC9C1\uC120
     \uB3C4\uC120 \uC124\uBA85"
   minigamePrefab: {fileID: 7746171799678712841, guid: dc7eb2b57c901d74885114402ffafc88, type: 3}

@@ -12,7 +12,7 @@ namespace KDH.Scripts.Minigame.CircleWire
         {
             if (irons.Contains(other.gameObject)) return;
 
-            if (other.TryGetComponent(out IronHolder iron))
+            if (other.TryGetComponent(out IronHolder _))
             {
                 irons.Add(other.gameObject);
                 other.transform.gameObject.SetActive(false);
@@ -21,7 +21,6 @@ namespace KDH.Scripts.Minigame.CircleWire
             if (irons.Count >= 300)
             {
                 UIManager.Instance.SuccessUI.SetActive(true);
-                Debug.Log("클리어");
             }
         }
     }

@@ -1,6 +1,8 @@
+using System.Collections;
 using KDH.Scripts.Craft;
 using KDH.Scripts.Item;
 using KDH.Scripts.Resource;
+using KDH.Scripts.Sell;
 using TMPro;
 using UnityEngine;
 
@@ -22,8 +24,16 @@ namespace KDH.Scripts.UI
         [SerializeField] private GameObject cannotSellingUI;
         [SerializeField] private TextMeshProUGUI coinText;
         [SerializeField] private TextMeshProUGUI[] resourceAmountText; // 귀찮아서 배열로
+        [field: SerializeField] public TextMeshProUGUI[] SellCostAmountText { get; private set; }
         [SerializeField] private TextMeshProUGUI havingResourceAmountText;
         [field: SerializeField] public TextMeshProUGUI itemCostText, itemDescText;
+        [field: SerializeField] public InputSellBox InputTextBox { get; private set; }
+
+        [SerializeField] private TextMeshProUGUI minCost, currentCost;
+        
+        [SerializeField] private float rotateTime;
+        public bool CanCostChange { get; set; }
+        private float _timer;
         
         void Awake()
         {
@@ -33,8 +43,23 @@ namespace KDH.Scripts.UI
         void Start()
         {
             ResourceDataManager.Instance.OnCoinChanged += SetCoinText;
+            CanCostChange = true;
         }
 
+        void Update()
+        {
+            if (!CanCostChange) return;
+            
+            _timer += Time.deltaTime;
+
+            if (_timer >= rotateTime)
+            {
+                SetCostAmountText();
+                SetSellCostAmountText();
+                _timer = 0;
+            }
+        }
+        
         private void OnDestroy()
         {
             ResourceDataManager.Instance.OnCoinChanged -= SetCoinText;
@@ -68,6 +93,7 @@ namespace KDH.Scripts.UI
                 ResourceDataManager.Instance.ResourceDict[itemData] > 0)
             {
                 canSellingUI.SetActive(true);
+                ResourceDataManager.Instance.CurrentItemData = itemData;
             }
             else
             {
@@ -112,15 +138,44 @@ namespace KDH.Scripts.UI
                 if (item.transform.parent.TryGetComponent(out ItemDataHandler data))
                 {
                     if (ResourceDataManager.Instance.ResourceDict.ContainsKey(data.ItemData))
-                        item.SetText($"소유하고 있는 물량: {ResourceDataManager.Instance.ResourceDict[data.ItemData]}");
+                        item.SetText($"소유하고 있는 제품의 개수: {ResourceDataManager.Instance.ResourceDict[data.ItemData]}");
                 }
             }
         }
 
-        public void SetTargetResourceAmountText()
+        public void CorouTargetAmountText()
         {
-            if (ResourceDataManager.Instance.ResourceDict.ContainsKey(CraftManager.Instance.CurrentItem))
-                havingResourceAmountText.SetText("현재 가지고 있는 품목의 개수:" + " "+ ResourceDataManager.Instance.ResourceDict[CraftManager.Instance.CurrentItem]);
+            StartCoroutine(SetTargetResourceAmountText());
+        }
+        
+        public IEnumerator SetTargetResourceAmountText()
+        {
+            yield return null;
+            
+            if (ResourceDataManager.Instance.ResourceDict.TryGetValue(ResourceDataManager.Instance.CurrentItemData, out int value))
+                havingResourceAmountText.SetText("현재 가지고 있는 제품의 개수:" + " "+ value);
+        }
+
+        public void SetBuyCosts()
+        {
+            currentCost.SetText("구매할 가격: " + CraftManager.Instance.CurrentItem.currentCost);
+            minCost.SetText("최적가: " + CraftManager.Instance.CurrentItem.minCost);
+        }
+
+        void SetCostAmountText()
+        {
+            if (CraftManager.Instance.CurrentItem == null) return;
+            
+            itemCostText.SetText($"비용: {CraftManager.Instance.CurrentItem.currentCost}");
+        }
+        
+        void SetSellCostAmountText()
+        {
+            foreach (var text in SellCostAmountText)
+            {
+                if (text.transform.parent.TryGetComponent(out ItemDataHandler data))
+                    text.SetText("현재 가격: " + (int)data.ItemData.RandomSellCost() + "원");
+            }
         }
     }
 }

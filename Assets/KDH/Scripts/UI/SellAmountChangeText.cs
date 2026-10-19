@@ -6,7 +6,7 @@ namespace KDH.Scripts.UI
     {
         private void OnEnable()
         {
-            UIManager.Instance.SetTargetResourceAmountText();
+            UIManager.Instance.CorouTargetAmountText();
         }
     }
 }

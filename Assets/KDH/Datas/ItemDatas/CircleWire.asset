@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: CircleWire
   m_EditorClassIdentifier: Assembly-CSharp::KDH.Scripts.Item.ItemSO
   cost: 500
-  sellCost: 1500
-  itemIcon: {fileID: 0}
+  minCost: 1250
+  maxCost: 10000000
+  tmpCost: 625
+  multiplySellCost: 0.25
+  itemIcon: {fileID: 6090206466308778113, guid: 47bf764db67d5e74c90f0c42ae7c0e6e, type: 3}
   desc: "\uC6D0\uD615 \uB3C4\uC6D0\uD615 \uB3C4\uC6D0\uD615 \uB3C4\uC6D0\uD615 \uB3C4\uC6D0\uD615
     \uB3C4"
   minigamePrefab: {fileID: 2393379402758138853, guid: 7c50b14e3df25c743b4d619398ee219a, type: 3}
