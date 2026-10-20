@@ -12,7 +12,7 @@ namespace KDH.Scripts.UI
         public void OnPointerEnter(PointerEventData eventData)
         {
             CraftManager.Instance.SetCurrentItem(itemData);
-            UIManager.Instance.itemCostText.SetText($"비용: {itemData.currentCost}");
+            UIManager.Instance.itemCostText.SetText($"비용: {(int)(itemData.currentCost * itemData.personnelExpenses)}");
             UIManager.Instance.itemDescText.SetText(itemData.desc);
         }
 

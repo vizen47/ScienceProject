@@ -15,8 +15,10 @@ MonoBehaviour:
   cost: 100
   minCost: 200
   maxCost: 5000000
-  tmpCost: 100
-  multiplySellCost: 0.1
+  tmpCost: 244
+  personnelExpenses: 0.5
+  multiplySellCost: 0.5
+  currentCost: 244
   itemIcon: {fileID: 4227206352671963777, guid: a085aaa6e5590b74e975602d483f611a, type: 3}
   desc: "\uC9C1\uC120 \uB3C4\uC120 \uC124\uBA85\uC9C1\uC120 \uB3C4\uC120 \uC124\uBA85\uC9C1\uC120
     \uB3C4\uC120 \uC124\uBA85"

@@ -58,11 +58,13 @@ namespace KDH.Scripts.Resource
         {
             if (!ResourceDict.TryAdd(CurrentItemData, UIManager.Instance.InputTextBox.GetAmount()))
             {
+                if (UIManager.Instance.InputTextBox.InputField.text == null) return;
+                
                 int value = Mathf.Min(ResourceDict[CurrentItemData], UIManager.Instance.InputTextBox.GetAmount());
                 ResourceDict[CurrentItemData] -= value;
-            }
 
-            Coin += (int)CurrentItemData.tmpCost;
+                Coin += (int)CurrentItemData.tmpCost * value;
+            }
             
             OnCoinChanged?.Invoke();
         }

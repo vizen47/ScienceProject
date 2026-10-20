@@ -1,3 +1,4 @@
+using KDH.Scripts.Minigame.StraightWire;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -23,13 +24,13 @@ public class Block : MonoBehaviour
         mouseScreenPos.z = 0; 
         _parent.StartPos = _mainCamera.ScreenToWorldPoint(mouseScreenPos);
     }
-
+    
     public void OnMouseUp()
     {
         Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
         mouseScreenPos.z = 0;
         _parent.EndPos = _mainCamera.ScreenToWorldPoint(mouseScreenPos);
-
+        
         _parent.CalcDrag(_parent.StartPos, _parent.EndPos);
     }
 }

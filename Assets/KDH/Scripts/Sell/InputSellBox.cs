@@ -6,18 +6,18 @@ namespace KDH.Scripts.Sell
 {
     public class InputSellBox : MonoBehaviour
     {
-        [SerializeField] private TMP_InputField inputField;
+        [field: SerializeField] public TMP_InputField InputField { get; private set; }
 
         void Awake()
         {
-            inputField.onValueChanged.AddListener(
-                (word) => inputField.text = Regex.Replace(word, @"[^0-9]", "")
+            InputField.onValueChanged.AddListener(
+                (word) => InputField.text = Regex.Replace(word, @"[^0-9]", "")
             );
         }
         
         public int GetAmount()
         {
-            return int.Parse(inputField.text);
+            return int.Parse(InputField.text);
         }
     }
 }

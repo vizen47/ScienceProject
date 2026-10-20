@@ -77,7 +77,7 @@ namespace KDH.Scripts.UI
         
         public void CanBuy(ItemSO itemData)
         {
-            if (itemData.cost <= ResourceDataManager.Instance.Coin)
+            if (itemData.currentCost <= ResourceDataManager.Instance.Coin)
             {
                 canPurchaseUI.SetActive(true);
             }
@@ -158,7 +158,7 @@ namespace KDH.Scripts.UI
 
         public void SetBuyCosts()
         {
-            currentCost.SetText("구매할 가격: " + CraftManager.Instance.CurrentItem.currentCost);
+            currentCost.SetText("구매할 가격: " + (int)(CraftManager.Instance.CurrentItem.currentCost * CraftManager.Instance.CurrentItem.personnelExpenses));
             minCost.SetText("최적가: " + CraftManager.Instance.CurrentItem.minCost);
         }
 
@@ -166,7 +166,7 @@ namespace KDH.Scripts.UI
         {
             if (CraftManager.Instance.CurrentItem == null) return;
             
-            itemCostText.SetText($"비용: {CraftManager.Instance.CurrentItem.currentCost}");
+            itemCostText.SetText($"비용: {(int)(CraftManager.Instance.CurrentItem.currentCost * CraftManager.Instance.CurrentItem.personnelExpenses)}");
         }
         
         void SetSellCostAmountText()

@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ConnectBlock
   <CurrentType>k__BackingField: 3
   <Line>k__BackingField: {fileID: 1580641874274439289}
+  isCleared: 0
 --- !u!61 &3214124043347489260
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -243,5 +244,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0

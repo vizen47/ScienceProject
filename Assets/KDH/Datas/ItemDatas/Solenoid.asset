@@ -15,8 +15,10 @@ MonoBehaviour:
   cost: 3000
   minCost: 7500
   maxCost: 100000000
-  tmpCost: 3000
-  multiplySellCost: 0.4
+  tmpCost: 7500
+  personnelExpenses: 0.8
+  multiplySellCost: 0.3
+  currentCost: 7500
   itemIcon: {fileID: -1542205054304954149, guid: c0b925d1fab47864c97bd7b89acc4fa5, type: 3}
   desc: "\uC194\uB808\uB178\uC774\uB4DC\uB77C\uB77C"
-  minigamePrefab: {fileID: 0}
+  minigamePrefab: {fileID: 3902317932318375334, guid: fb9b69706c76e964c8224f676d8815c1, type: 3}

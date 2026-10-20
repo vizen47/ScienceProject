@@ -9,6 +9,7 @@ namespace KDH.Scripts.Item
         public float minCost;
         public float maxCost;
         public float tmpCost;
+        public float personnelExpenses;
         public float multiplySellCost;
 
         public float currentCost;

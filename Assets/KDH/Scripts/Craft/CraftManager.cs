@@ -1,5 +1,4 @@
 using System;
-using System.Resources;
 using KDH.Scripts.Item;
 using KDH.Scripts.Resource;
 using KDH.Scripts.UI;
@@ -53,7 +52,7 @@ namespace KDH.Scripts.Craft
 
             UIManager.Instance.CanCostChange = false;
             
-            ResourceDataManager.Instance.Coin -= (int)CurrentItem.currentCost;
+            ResourceDataManager.Instance.Coin -= (int)(CurrentItem.currentCost * CurrentItem.personnelExpenses);
             ResourceDataManager.Instance.OnCoinChanged?.Invoke();
         }
 
