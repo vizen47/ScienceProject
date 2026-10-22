@@ -120,7 +120,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8644334702165278941}
@@ -173,7 +173,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 996353439
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 1, b: 1, a: 1}
@@ -199,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ConnectBlock
   <CurrentType>k__BackingField: 3
   <Line>k__BackingField: {fileID: 1580641874274439289}
+  isCleared: 0
 --- !u!61 &3214124043347489260
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -243,5 +244,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1.25, y: 1.25}
   m_EdgeRadius: 0
