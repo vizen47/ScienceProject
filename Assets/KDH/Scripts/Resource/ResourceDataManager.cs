@@ -46,21 +46,21 @@ namespace KDH.Scripts.Resource
             InitSellCost();
         }
 
-        public void GetResource(int count)
+        public void GetResource()
         {
-            if (!ResourceDict.TryAdd(CraftManager.Instance.CurrentItem, count))
+            if (!ResourceDict.TryAdd(CraftManager.Instance.CurrentItem, CraftManager.Instance.MadeItemAmount))
             {
-                ResourceDict[CraftManager.Instance.CurrentItem] += count;
+                ResourceDict[CraftManager.Instance.CurrentItem] += CraftManager.Instance.MadeItemAmount;
             }
         }
 
         public void UseResourceForCoin()
         {
-            if (!ResourceDict.TryAdd(CurrentItemData, UIManager.Instance.InputTextBox.GetAmount()))
+            if (!ResourceDict.TryAdd(CurrentItemData, UIManager.Instance.SellInputTextBox.GetAmount()))
             {
-                if (UIManager.Instance.InputTextBox.InputField.text == null) return;
+                if (UIManager.Instance.SellInputTextBox.InputField.text == null) return;
                 
-                int value = Mathf.Min(ResourceDict[CurrentItemData], UIManager.Instance.InputTextBox.GetAmount());
+                int value = Mathf.Min(ResourceDict[CurrentItemData], UIManager.Instance.SellInputTextBox.GetAmount());
                 ResourceDict[CurrentItemData] -= value;
 
                 Coin += (int)CurrentItemData.tmpCost * value;

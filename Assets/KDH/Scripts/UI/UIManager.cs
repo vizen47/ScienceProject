@@ -3,6 +3,7 @@ using KDH.Scripts.Craft;
 using KDH.Scripts.Item;
 using KDH.Scripts.Resource;
 using KDH.Scripts.Sell;
+using KDH.Scripts.Sounds;
 using TMPro;
 using UnityEngine;
 
@@ -22,15 +23,18 @@ namespace KDH.Scripts.UI
         [SerializeField] private GameObject cannotPurchaseUI;
         [SerializeField] private GameObject canSellingUI;
         [SerializeField] private GameObject cannotSellingUI;
+        [SerializeField] private GameObject coinUI;
+        [SerializeField] private GameObject settingsUI;
+        [SerializeField] private GameObject gaveOverUI;
         [SerializeField] private TextMeshProUGUI coinText;
         [SerializeField] private TextMeshProUGUI[] resourceAmountText; // 귀찮아서 배열로
         [field: SerializeField] public TextMeshProUGUI[] SellCostAmountText { get; private set; }
         [SerializeField] private TextMeshProUGUI havingResourceAmountText;
         [field: SerializeField] public TextMeshProUGUI itemCostText, itemDescText;
-        [field: SerializeField] public InputSellBox InputTextBox { get; private set; }
-
-        [SerializeField] private TextMeshProUGUI minCost, currentCost;
-        
+        [field: SerializeField] public InputCraftBox InputCraftBox { get; private set; }
+        [field: SerializeField] public InputSellBox SellInputTextBox { get; private set; }
+        [field: SerializeField] public TextMeshProUGUI MinCost { get; private set; }
+        [field: SerializeField] public TextMeshProUGUI CurrentCost { get; private set; }
         [SerializeField] private float rotateTime;
         public bool CanCostChange { get; set; }
         private float _timer;
@@ -74,6 +78,17 @@ namespace KDH.Scripts.UI
         {
             SellingUI.SetActive(!SellingUI.activeSelf);
         }
+
+        public void SetActiveGameOverUI()
+        {
+            gaveOverUI.SetActive(!gaveOverUI.activeSelf);
+        }
+        
+        public void ActiveSettingUI()
+        {
+            settingsUI.SetActive(!settingsUI.activeSelf);
+            gaveOverUI.SetActive(false);
+        }
         
         public void CanBuy(ItemSO itemData)
         {
@@ -106,6 +121,7 @@ namespace KDH.Scripts.UI
             CraftTableUI.SetActive(false);
             CraftTableBtn.SetActive(false);
             SellingBtn.SetActive(false);
+            coinUI.SetActive(false);
             MinigameSurrenderUI.SetActive(true);
         }
         
@@ -115,7 +131,10 @@ namespace KDH.Scripts.UI
             CraftTableBtn.SetActive(true);
             SellingBtn.SetActive(true);
             SuccessUI.SetActive(true);
+            coinUI.SetActive(true);
             MinigameSurrenderUI.SetActive(false);
+            
+            SoundManager.Instace.PlayBGM(SoundManager.Instace.BGM);
         }
 
         public void SurrenderMinigame()
@@ -123,7 +142,10 @@ namespace KDH.Scripts.UI
             CraftTableUI.SetActive(true);
             CraftTableBtn.SetActive(true);
             SellingBtn.SetActive(true);
+            coinUI.SetActive(true);
             MinigameSurrenderUI.SetActive(false);
+            
+            SoundManager.Instace.PlayBGM(SoundManager.Instace.BGM);
         }
 
         private void SetCoinText()
@@ -131,6 +153,7 @@ namespace KDH.Scripts.UI
             coinText.SetText($"골드: {ResourceDataManager.Instance.Coin}원");
         }
 
+        
         public void SetResourceAmountText()
         {
             foreach (var item in resourceAmountText)
@@ -155,11 +178,11 @@ namespace KDH.Scripts.UI
             if (ResourceDataManager.Instance.ResourceDict.TryGetValue(ResourceDataManager.Instance.CurrentItemData, out int value))
                 havingResourceAmountText.SetText("현재 가지고 있는 제품의 개수:" + " "+ value);
         }
-
+        
         public void SetBuyCosts()
         {
-            currentCost.SetText("구매할 가격: " + (int)(CraftManager.Instance.CurrentItem.currentCost * CraftManager.Instance.CurrentItem.personnelExpenses));
-            minCost.SetText("최적가: " + CraftManager.Instance.CurrentItem.minCost);
+            CurrentCost.SetText("구매할 개당 가격: " + (int)(CraftManager.Instance.CurrentItem.currentCost * CraftManager.Instance.CurrentItem.personnelExpenses));
+            MinCost.SetText("시장 최적가: " + CraftManager.Instance.CurrentItem.minCost);
         }
 
         void SetCostAmountText()

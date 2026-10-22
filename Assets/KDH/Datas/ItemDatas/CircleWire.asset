@@ -15,11 +15,16 @@ MonoBehaviour:
   cost: 500
   minCost: 1250
   maxCost: 10000000
-  tmpCost: 1383
+  tmpCost: 1723
   personnelExpenses: 0.75
   multiplySellCost: 0.4
-  currentCost: 1383
+  currentCost: 1723
   itemIcon: {fileID: 6090206466308778113, guid: 47bf764db67d5e74c90f0c42ae7c0e6e, type: 3}
-  desc: "\uC6D0\uD615 \uB3C4\uC6D0\uD615 \uB3C4\uC6D0\uD615 \uB3C4\uC6D0\uD615 \uB3C4\uC6D0\uD615
-    \uB3C4"
+  desc: "\uC6D0\uD615 \uB3C4\uC120\uC740 \uC804\uC120\uC744 \uC6D0 \uBAA8\uC591\uC73C\uB85C
+    \uB9CC\uB4E0 \uAC83\uC73C\uB85C, \uC804\uB958\uAC00 \uD750\uB974\uBA74 \uB3C4\uC120
+    \uC8FC\uC704\uC5D0 \uC790\uAE30\uC7A5\uC774 \uD615\uC131\uB41C\uB2E4. \uC6D0\uD615
+    \uB3C4\uC120\uC758 \uC911\uC2EC\uC5D0\uC11C\uB294 \uC790\uAE30\uC7A5\uC774 \uAC15\uD558\uAC8C
+    \uB098\uD0C0\uB098\uBA70, \uC804\uB958\uC758 \uBC29\uD5A5\uC5D0 \uB530\uB77C
+    \uC790\uAE30\uC7A5\uC758 \uBC29\uD5A5\uC774 \uB2EC\uB77C\uC9C4\uB2E4."
   minigamePrefab: {fileID: 2393379402758138853, guid: 7c50b14e3df25c743b4d619398ee219a, type: 3}
+  gameBgm: {fileID: 11400000, guid: 3e5cecefdd57aaf49968a41f6550cae2, type: 2}

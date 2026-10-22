@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b34f75cbc5451c9722014f481d1909, type: 3}
+  m_Name: Minigame1
+  m_EditorClassIdentifier: Assembly-CSharp::KDH.Scripts.Sounds.BGMSoundDataSO
+  audioClip: {fileID: 8300000, guid: d99d65e4b03c9224ca238386df306512, type: 3}
+  startTime: 0
+  randomPitch: 0
+  loop: 1
+  volume: 0.4
+  minPitch: 0
+  maxPitch: 0

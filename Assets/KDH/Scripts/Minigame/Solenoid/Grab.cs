@@ -1,3 +1,4 @@
+using KDH.Scripts.Sounds;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ namespace KDH.Scripts.Minigame.Solenoid
         
         [SerializeField] private Collider2D electricPoint;
         [SerializeField] private Solenoid solenoid;
+        [SerializeField] private SFXDataSO connected, disconnected;
         private Camera _mainCam;
 
         void Awake()
@@ -35,6 +37,11 @@ namespace KDH.Scripts.Minigame.Solenoid
         {
             solenoid.CanElectronic = Physics2D.OverlapCircle(electricPoint.transform.position, detectRange, whatIsSolenoid);
 
+            if (solenoid.CanElectronic)
+                SoundManager.Instace.PlaySound(connected);
+            else
+                SoundManager.Instace.PlaySound(disconnected);
+            
             solenoid.PointEffector.enabled = solenoid.CanElectronic;
         }
 

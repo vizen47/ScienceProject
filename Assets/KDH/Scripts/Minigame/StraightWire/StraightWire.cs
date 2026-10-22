@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
+using KDH.Scripts.Craft;
+using KDH.Scripts.Sounds;
 using KDH.Scripts.UI;
 using UnityEngine;
 using Random = System.Random;
@@ -29,6 +31,8 @@ namespace KDH.Scripts.Minigame.StraightWire
         private float _angle;
         private bool _isGameEnded;
 
+        [SerializeField] private SFXDataSO conntectedSound;
+        
         private void Start()
         {
             int blockCount = Mathf.Min(leftSpawnPoints.Length, rightSpawnPoints.Length, leftBlocks.Length, rightBlocks.Length);
@@ -97,6 +101,7 @@ namespace KDH.Scripts.Minigame.StraightWire
                     }
 
                     block.isCleared = true;
+                    SoundManager.Instace.PlaySound(conntectedSound);
                 }
             }
 

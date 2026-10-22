@@ -1,3 +1,4 @@
+using KDH.Scripts.Sounds;
 using UnityEngine;
 
 namespace KDH.Scripts.Item
@@ -19,6 +20,8 @@ namespace KDH.Scripts.Item
 
         public GameObject minigamePrefab;
 
+        public BGMSoundDataSO gameBgm;
+        
         public void Init()
         {
             tmpCost = Mathf.Clamp(cost, minCost, maxCost);

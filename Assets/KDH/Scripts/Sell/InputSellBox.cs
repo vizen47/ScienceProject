@@ -17,6 +17,9 @@ namespace KDH.Scripts.Sell
         
         public int GetAmount()
         {
+            if (string.IsNullOrWhiteSpace(InputField.text))
+                return 1;
+            
             return int.Parse(InputField.text);
         }
     }
